@@ -92,7 +92,49 @@ function Game_Avatar() {
 	'use strict';
 	OnlineManager.parameters = PluginManager.parameters('OnlineAvatar');
 	OnlineManager.url = 'https://www.gstatic.com/firebasejs/live/3.0/firebase.js';
-	OnlineManager.avatarTemplate = {"id":0,"meta":{},"name":"","note":"","pages":[{"conditions":{"actorId":1,"actorValid":false,"itemId":1,"itemValid":false,"selfSwitchCh":"A","selfSwitchValid":false,"switch1Id":1,"switch1Valid":false,"switch2Id":1,"switch2Valid":false,"variableId":1,"variableValid":false,"variableValue":0},"directionFix":false,"image":{"tileId":0,"characterName":"","direction":2,"pattern":1,"characterIndex":0},"list":null,"moveFrequency":5,"moveRoute":{"list":[{"code":45,"parameters":["this.moveOnlineXy()"],"indent":null},{"code":0,"parameters":[]}],"repeat":true,"skippable":false,"wait":false},"moveSpeed":5,"moveType":3,"priorityType":1,"stepAnime":false,"through":true,"trigger":4,"walkAnime":true}],"x":0,"y":0};
+	OnlineManager.avatarTemplate = {
+	"id":0,
+	"meta":{},
+	"name":"",
+	"note":"",
+	"pages":[{"conditions":{"actorId":1,
+		"actorValid":false,
+		"itemId":1,
+		"itemValid":false,
+		"selfSwitchCh":"A",
+		"selfSwitchValid":false,
+		"switch1Id":1,
+		"switch1Valid":false,
+		"switch2Id":1,
+		"switch2Valid":false,
+		"variableId":1,
+		"variableValid":false,
+		"variableValue":0},
+		"directionFix":false,
+		"image":{"tileId":0,
+			"characterName":"",
+			"direction":2,
+			"pattern":1,
+			"characterIndex":0},
+			"list":null,
+			"moveFrequency":5,
+			"moveRoute":{"list":[{"code":45,
+				"parameters":["this.moveOnlineXy()"],
+					"indent":null},
+				{"code":0,
+				"parameters":[]}],
+			"repeat":true,
+			"skippable":false,
+			"wait":false},
+		"moveSpeed":5,
+		"moveType":3,
+		"priorityType":1,
+		"stepAnime":false,
+		"through":true,
+		"trigger":4,
+		"walkAnime":true}],
+	"x":0,
+	"y":0};
 	OnlineManager.avatarsInThisMap = null;
 	OnlineManager.mapRef = null;
 	OnlineManager.selfRef = null;
@@ -124,7 +166,11 @@ function Game_Avatar() {
 		ps['syncVariableEnd'] = +ps['syncVariableEnd'];
 
 		try {
-			firebase.initializeApp({apiKey: ps['apiKey'], authDomain: ps['authDomain'], databaseURL: ps['databaseURL']});
+			firebase.initializeApp(
+				{apiKey: ps['apiKey'],
+				authDomain: ps['authDomain'],
+				databaseURL: ps['databaseURL']}
+			);
 		} catch(e) {
 			throw new Error('apiKeyが正しく設定されていません。ご確認ください。');
 		}
@@ -250,7 +296,14 @@ function Game_Avatar() {
 	//送信するプレイヤー情報
 	OnlineManager.playerInfo = function() {
 		var $ = $gamePlayer;
-		return {x: $.x, y: $.y, direction: $.direction(), speed: $.realMoveSpeed(), charaName: $.characterName(), charaIndex: $.characterIndex()};
+		return {
+			x: $.x,
+			y: $.y,
+			direction: $.direction(),
+			speed: $.realMoveSpeed(),
+			charaName: $.characterName(),
+			charaIndex: $.characterIndex()
+		};
 	};
 
 	//プレイヤー情報をオンライン上に送信
